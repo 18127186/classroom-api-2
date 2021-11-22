@@ -41,8 +41,6 @@ exports.update = async function(req, res) {
         address: req.body.address
     }
 
-    console.log(editInfo);
-
     const result = await accountService.checkExistedByStudentId(editInfo.studentId);
 
     if (result.length === 0) {

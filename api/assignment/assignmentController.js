@@ -16,8 +16,6 @@ exports.deleteAssignment = async function(req, res) {
     if (!isTeacher){
         res.status(404).json({message: "Authorization Secure Error!"});
     } else {
-        console.log(req.params.idClass);
-
         const assignment = await assignmentService.deleteAssignment(req.params.idAssign);
     
         if (assignment) {
