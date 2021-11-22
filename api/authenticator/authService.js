@@ -26,7 +26,7 @@ exports.googleSignIn = async (tokenID) => {
             await accountService.updateInfoForOneField('name', name, acc.id)
         }
         const result ={
-            user: acc.username,
+            user: acc,
             token: jwt.sign({
                 id: acc.id,
                 username: acc.username,
@@ -47,7 +47,7 @@ exports.googleSignIn = async (tokenID) => {
         await accountService.create(newAccount);
         const acc = await accountService.findAccWithMail(mail);
         const result = {
-            user: newAccount.username,
+            user: acc,
             token: jwt.sign({
                 id: acc.id,
                 username: acc.username,
@@ -82,7 +82,7 @@ exports.facebookSignIn = async (tokenID, callback) => {
                 await accountService.updateInfoForOneField('name', data.name, acc.id)
             }
             const result ={
-                user: acc.username,
+                user: acc,
                 token: jwt.sign({
                     id: acc.id,
                     username: acc.username,
