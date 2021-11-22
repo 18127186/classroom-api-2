@@ -7,7 +7,7 @@ exports.sendEmail = async (req, res) => {
     const role = req.body.role;
     const classId = req.body.classId;
 
-    const isTeacher = await Authorization.teacherAuthority(classId);
+    const isTeacher = await Authorization.teacherAuthority(req.user.id, classId);
     if (!isTeacher){
         res.status(404).json({message: "Authorization Secure Error!"});
     }

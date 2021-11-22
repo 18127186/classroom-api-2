@@ -1,12 +1,12 @@
 const accountService = require('../../api/accounts/accountService');
 
-exports.teacherAuthority = async(req, res, idClass) => {
-    const id = req.user.id;
-    if (!id) {
+exports.teacherAuthority = async(userId, idClass) => {
+    if (!userId) {
         return false;
     }
 
-    const result = accountService.isTeacherOfCLass(id, idClass);
-    return (result.role === "teacher");
+    const result = await accountService.isTeacherOfCLass(userId, idClass);
+
+    return (result[0].role === "teacher");
 };
 

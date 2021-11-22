@@ -36,9 +36,9 @@ Account.checkExistedByStudentId = (studentId) => db.execute(
      FROM accounts
      WHERE studentID = '${studentId}'`);
 
-Account.isTeacherOfCLass = (UserId, classID) => db.execute(
+Account.isTeacherOfCLass = (userId, classID) => db.execute(
     `SELECT role
     FROM class_accounts
-    WHERE id_account = '${studentId}' AND 'id_class'='${classID}`);
+    WHERE id_account = '${userId}' AND id_class='${classID}'`);
      
 module.exports = Account;

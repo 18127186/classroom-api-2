@@ -1,8 +1,8 @@
 const classService = require('./classService');
 const classMemberService = require('./classMemberService');
-const authorization = require('../../modules/authorization');
 const jwt_decode = require('jwt-decode');
 const jwt = require('jsonwebtoken');
+
 exports.list = async function(req, res) {
     const classes = await classService.list(req.user.id);
 
