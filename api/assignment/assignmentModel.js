@@ -14,4 +14,11 @@ exports.deleteAssignment = (idAssign) => db.execute(
     `DELETE FROM assignments 
      WHERE id = '${idAssign}'`);
 
-     
+exports.updateAssignment = (assignObj) => db.execute(
+    `UPDATE assignments 
+    SET topic = '${assignObj.topic}', 
+        description = '${assignObj.description}', 
+        deadline = '${assignObj.deadline}', 
+        grade = '${assignObj.grade}' 
+    WHERE (id = '${assignObj.id}');`
+);     

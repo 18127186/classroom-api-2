@@ -50,3 +50,26 @@ exports.createAssignment = async function(req, res) {
         }
     }
 };
+
+exports.updateAssignment = async (req, res) => {
+    const isTeacher = await Authorization.teacherAuthority(req.user.id, req.params.idClass);
+    if (!isTeacher){
+        res.status(404).json({message: "Authorization Secure Error!"});
+    } else {
+        const assignObj = {
+            "id": req.params.idAssign, 
+            "topic": req.body.topic, 
+            "description": req.body.description, 
+            "deadline": req.body.deadline,
+            "grade": req.body.grade,
+        };
+    
+        const assignment = await assignmentService.updateAssignment(assignObj);
+    
+        if (assignment) {
+            res.status(200).json(assignment);
+        } else {
+            res.status(404).json({message: 'Update failed!'});
+        }
+    }
+}
