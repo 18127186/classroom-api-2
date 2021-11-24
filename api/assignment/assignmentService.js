@@ -7,3 +7,5 @@ exports.createAssignment = (assignObj) => assignmentModel.createAssignment(assig
 exports.deleteAssignment = (idAssign) => assignmentModel.deleteAssignment(idAssign);
 
 exports.updateAssignment = (assignObj) => assignmentModel.updateAssignment(assignObj);
+
+exports.updateRank = (listAssign) => assignmentModel.updateRank(listAssign);

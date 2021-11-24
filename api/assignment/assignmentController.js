@@ -73,3 +73,20 @@ exports.updateAssignment = async (req, res) => {
         }
     }
 }
+
+exports.updateRank = async (req, res) => {
+    const isTeacher = await Authorization.teacherAuthority(req.user.id, req.params.idClass);
+    if (!isTeacher){
+        res.status(404).json({message: "Authorization Secure Error!"});
+    } else {
+        const listAssign = req.body;
+    
+        const assignment = await assignmentService.updateRank(listAssign);
+    
+        if (assignment) {
+            res.status(200).json(assignment);
+        } else {
+            res.status(404).json({message: 'Update rank failed!'});
+        }
+    }
+}
